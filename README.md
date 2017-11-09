@@ -1,1 +1,1 @@
-# SI-YotubeMaven
+# Youtube project with Maven and JPAHibernate
