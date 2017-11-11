@@ -4,7 +4,6 @@
 	version="2.0">
 	<persistence-unit name="si-database" transaction-type="RESOURCE_LOCAL">
 		<class>samuandluis.siyoutube.persistence.User</class>
-		<class>samuandluis.siyoutube.persistence.Users</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.user" value="siuser" />
