@@ -10,11 +10,10 @@ public class Video {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
 	private String category;
-	private String videoFile;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -30,12 +29,4 @@ public class Video {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getVideoFile() {
-		return videoFile;
-	}
-	public void setVideoFile(String videoFile) {
-		this.videoFile = videoFile;
-	}
-	
-	
 }
