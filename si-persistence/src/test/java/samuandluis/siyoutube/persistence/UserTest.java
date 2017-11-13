@@ -29,7 +29,7 @@ public class UserTest extends SQLBasedTest {
 	
 
 	@Test
-	public void testAddNewDepartment() throws Exception {
+	public void testAddNewUser() throws Exception {
 		
 		User u = new User();
 		u.setName("Stelan");
