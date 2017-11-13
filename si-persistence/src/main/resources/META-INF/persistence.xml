@@ -4,6 +4,7 @@
 	version="2.0">
 	<persistence-unit name="youtube" transaction-type="RESOURCE_LOCAL">
 		<class>samuandluis.siyoutube.persistence.User</class>
+		<class>samuandluis.siyoutube.persistence.Video</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.user" value="siuser" />
