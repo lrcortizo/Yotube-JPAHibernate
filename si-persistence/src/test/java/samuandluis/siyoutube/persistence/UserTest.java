@@ -32,7 +32,7 @@ public class UserTest extends SQLBasedTest {
 	public void testAddNewUser() throws Exception {
 		
 		User u = new User();
-		u.setName("Stelan");
+		u.setName("User1");
 
 		EntityManager em = emf.createEntityManager();
 		Users users = new Users(em);
@@ -50,25 +50,24 @@ public class UserTest extends SQLBasedTest {
 	
 	@Test
 	public void testFindById() throws SQLException {
-		// insert a department previously with JDBC
+		// insert a user previously with JDBC
 		Statement statement = jdbcConnection.createStatement();
-		statement.executeUpdate("INSERT INTO User(name) values('Stelan')", Statement.RETURN_GENERATED_KEYS);
+		statement.executeUpdate("INSERT INTO User(name) values('User1')", Statement.RETURN_GENERATED_KEYS);
 		int userId = getLastInsertedId(statement);
 
 		EntityManager em = emf.createEntityManager();
 		Users users = new Users(em);
-		User d = users.findById(userId);
+		User u = users.findById(userId);
 		
-		assertEquals(userId, d.getId());
-		assertEquals("Stelan", d.getName());
-		
+		assertEquals(userId, u.getId());
+		assertEquals("User1", u.getName());
 	}
 	
 	@Test
 	public void testUpdateUser() throws SQLException {
-		// insert a department previously with JDBC
+		// insert a user previously with JDBC
 		Statement statement = jdbcConnection.createStatement();
-		statement.executeUpdate("INSERT INTO User(name) values('Stelan')", Statement.RETURN_GENERATED_KEYS);
+		statement.executeUpdate("INSERT INTO User(name) values('User1')", Statement.RETURN_GENERATED_KEYS);
 		int userId = getLastInsertedId(statement);
 		
 		EntityManager em = emf.createEntityManager();
@@ -76,22 +75,22 @@ public class UserTest extends SQLBasedTest {
 		User u = users.findById(userId);
 		
 		em.getTransaction().begin();
-			u.setName("Esteban");
+			u.setName("User2");
 		em.getTransaction().commit();
 		
 		// check in the DB using JDBC
 		statement = jdbcConnection.createStatement();
 		ResultSet rs = statement.executeQuery("SELECT * FROM User u where u.id = "+userId);
 		rs.next();
-		assertEquals("Esteban", rs.getString("name"));
+		assertEquals("User2", rs.getString("name"));
 
 	}
 	
 	@Test
 	public void testDeleteUser() throws SQLException {
-		// insert a department previously with JDBC
+		// insert a user previously with JDBC
 		Statement statement = jdbcConnection.createStatement();
-		statement.executeUpdate("INSERT INTO User(name) values('Stelan')", Statement.RETURN_GENERATED_KEYS);
+		statement.executeUpdate("INSERT INTO User(name) values('User1')", Statement.RETURN_GENERATED_KEYS);
 		int userId = getLastInsertedId(statement);
 		
 		EntityManager em = emf.createEntityManager();
