@@ -81,7 +81,7 @@ public class VideoTest extends SQLBasedTest{
 		statement = jdbcConnection.createStatement();
 		ResultSet rs = statement.executeQuery("SELECT * FROM Video v where v.id = "+videoId);
 		rs.next();
-		assertEquals("User2", rs.getString("name"));
+		assertEquals("Video2", rs.getString("name"));
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class VideoTest extends SQLBasedTest{
 		Video v = videos.findById(videoId);
 		
 		em.getTransaction().begin();
-			videos.deleteUser(v);
+			videos.deleteVideo(v);
 		em.getTransaction().commit();
 		
 		// check in the DB using JDBC
