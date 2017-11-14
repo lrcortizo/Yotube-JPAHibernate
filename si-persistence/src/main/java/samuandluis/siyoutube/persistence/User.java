@@ -17,6 +17,7 @@ public class User {
 	private String nickname;
 	private String password;
 	private Date birthday;
+	private Channel channel;
 	
 	public int getId() {
 		return id;
@@ -45,4 +46,8 @@ public class User {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
+	public Channel getChannel() {
+		return channel;
+	}
+	
 }
