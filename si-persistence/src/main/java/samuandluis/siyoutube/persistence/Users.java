@@ -14,8 +14,6 @@ public class Users {
 	
 	public void addNewUser (User u) {
 		em.persist(u);
-		Channel c = new Channel(u.getNickname());
-		em.persist(c);
 	}
 	
 	public User findById(int id) {
