@@ -3,6 +3,7 @@ package samuandluis.siyoutube.persistence;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -13,6 +14,9 @@ public class Video {
 
 	private String name;
 	private String category;
+	
+	@ManyToOne
+	private Channel channel;
 
 	public int getId() {
 		return id;
