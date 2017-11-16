@@ -1,8 +1,10 @@
 package samuandluis.siyoutube.persistence;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,12 +20,15 @@ public class Channel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne (fetch=FetchType.LAZY)
+	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private User user;
+	
 	
 	@OneToMany(mappedBy="channel")
 	private List<Video> listVideos;
 	
+	
+	private String description;
 	
 	public Channel () {
 		this.listVideos = new ArrayList<Video>();
@@ -34,11 +39,27 @@ public class Channel {
 	}
 	
 	public List<Video> getListVideos() {
-		return listVideos;
+		return Collections.unmodifiableList(listVideos);
 	}
 	
-	public void setListVideos(List<Video> listVideos) {
-		this.listVideos = listVideos;
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User getUser() {
+		return user;
+	}
+	
+	void internalAddVideo (Video v) {
+		this.listVideos.add(v);
+	}
+	
+	void internalRemoveVideo (Video v) {
+		this.listVideos.remove(v);
 	}
 	
 	

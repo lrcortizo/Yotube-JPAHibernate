@@ -33,4 +33,9 @@ public class Video {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public Channel getChannel() {
+		return this.channel;
+	}
+
 }

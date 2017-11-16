@@ -16,11 +16,6 @@ public class Channels {
 		return em.find(Channel.class, id);
 	}
 	
-	
-	public Channel findByName(String name) {
-		return em.find(Channel.class, name);
-	}
-
 	public List<Channel> findAll() {
 		return em.createQuery("SELECT c FROM Channel c").getResultList();
 	}

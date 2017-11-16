@@ -14,6 +14,7 @@ public class Users {
 	
 	public void addNewUser (User u) {
 		em.persist(u);
+		em.persist(new Channel());
 	}
 	
 	public User findById(int id) {
