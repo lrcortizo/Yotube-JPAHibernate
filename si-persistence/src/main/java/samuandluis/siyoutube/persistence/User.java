@@ -3,8 +3,10 @@ package samuandluis.siyoutube.persistence;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -17,6 +19,8 @@ public class User {
 	private String nickname;
 	private String password;
 	private Date birthday;
+	
+	@OneToOne (fetch=FetchType.LAZY)
 	private Channel channel;
 	
 	public int getId() {
