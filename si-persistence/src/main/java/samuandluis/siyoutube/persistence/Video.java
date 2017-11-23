@@ -17,6 +17,9 @@ public class Video {
 	
 	@ManyToOne
 	private Channel channel;
+	
+	@ManyToOne
+	private Playlist playlist;
 
 	public int getId() {
 		return id;

@@ -27,7 +27,6 @@ public class Channel {
 	@OneToMany(mappedBy="channel")
 	private List<Video> listVideos;
 	
-	
 	private String description;
 	
 	public Channel () {

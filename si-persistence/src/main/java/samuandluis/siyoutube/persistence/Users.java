@@ -13,8 +13,7 @@ public class Users {
 	}
 	
 	public void addNewUser (User u) {
-		em.persist(u);
-		em.persist(new Channel());
+		em.persist(u); //with this instruction, the channel is added too
 	}
 	
 	public User findById(int id) {
@@ -22,8 +21,7 @@ public class Users {
 	}
 
 	public void deleteUser(User u) {
-		em.remove(u);
-		em.remove(u.getChannel());
+		em.remove(u); //with this instruction, the channel is removed too
 	}
 
 	public List<User> findAll() {

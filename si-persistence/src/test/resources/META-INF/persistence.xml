@@ -6,6 +6,7 @@
 		<class>samuandluis.siyoutube.persistence.User</class>
 		<class>samuandluis.siyoutube.persistence.Video</class>
 		<class>samuandluis.siyoutube.persistence.Channel</class>
+		<class>samuandluis.siyoutube.persistence.Playlist</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.user" value="siuser" />

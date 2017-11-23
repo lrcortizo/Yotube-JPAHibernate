@@ -6,6 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+
 public class SQLBasedTest {
 	
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/youtube";
@@ -29,4 +35,19 @@ public class SQLBasedTest {
 		
 		return rs.getInt(1);
 	}
+	
+	// EntityManagerFactory management
+		protected static EntityManagerFactory emf;
+
+		@BeforeClass
+		public static void setUpEntityManagerFactory() {
+			emf = Persistence.createEntityManagerFactory("youtube-database");
+		}
+
+		@AfterClass
+		public static void closeEntityManagerFactory() throws SQLException {
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
+		}
 }
