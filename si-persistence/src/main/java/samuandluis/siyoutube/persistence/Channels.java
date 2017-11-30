@@ -12,6 +12,10 @@ public class Channels {
 		this.em = em;
 	}
 	
+	public void addNewChannel (Channel c) {
+		em.persist(c); //with this instruction, the channel is added too
+	}
+	
 	public Channel findById(int id) {
 		return em.find(Channel.class, id);
 	}

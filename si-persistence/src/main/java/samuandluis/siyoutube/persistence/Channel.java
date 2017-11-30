@@ -53,6 +53,10 @@ public class Channel {
 		return user;
 	}
 	
+	public void setUser (User u) {
+		this.user = u;
+	}
+	
 	void internalAddVideo (Video v) {
 		this.listVideos.add(v);
 	}

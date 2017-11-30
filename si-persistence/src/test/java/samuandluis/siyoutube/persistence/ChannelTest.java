@@ -30,8 +30,12 @@ private static EntityManagerFactory emf;
 
 		EntityManager em = emf.createEntityManager();
 		Users users = new Users(em);
+		Channels channels = new Channels(em);
+		Channel c = new Channel();
+		c.setUser(u);
 		em.getTransaction().begin();
 			users.addNewUser(u);
+			channels.addNewChannel(c);
 		em.getTransaction().commit();
 		
 		// check in the DB using JDBC
