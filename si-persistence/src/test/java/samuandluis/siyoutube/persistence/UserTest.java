@@ -91,8 +91,11 @@ public class UserTest extends SQLBasedTest {
 		// insert a user previously with JDBC
 		Statement statement = jdbcConnection.createStatement();
 		statement.executeUpdate("INSERT INTO User(name) values('User1')", Statement.RETURN_GENERATED_KEYS);
+
 		int userId = getLastInsertedId(statement);
-		
+		//Se inserta un canal para comprobar que es borrado al borrar un usuario
+		statement.executeUpdate("INSERT INTO Channel(description) values('Channel1')", Statement.RETURN_GENERATED_KEYS);
+
 		EntityManager em = emf.createEntityManager();
 		Users users = new Users(em);
 		User u = users.findById(userId);
@@ -104,6 +107,10 @@ public class UserTest extends SQLBasedTest {
 		// check in the DB using JDBC
 		statement = jdbcConnection.createStatement();
 		ResultSet rs = statement.executeQuery("SELECT COUNT(*) as total FROM User u where u.id = "+userId);
+		rs.next();
+		assertEquals(0, rs.getInt("total"));
+		
+		rs = statement.executeQuery("SELECT COUNT(*) as total FROM Channel c where c.id = "+userId);
 		rs.next();
 		assertEquals(0, rs.getInt("total"));
 	}
