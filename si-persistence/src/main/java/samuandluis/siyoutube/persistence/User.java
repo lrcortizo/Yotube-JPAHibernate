@@ -53,5 +53,8 @@ public class User {
 	public Channel getChannel() {
 		return channel;
 	}
+	public void setChannel(Channel c) {
+		this.channel = c;
+	}
 	
 }

@@ -35,7 +35,9 @@ private static EntityManagerFactory emf;
 		c.setUser(u);
 		em.getTransaction().begin();
 			users.addNewUser(u);
+			c.setDescription("prueba 1");
 			channels.addNewChannel(c);
+			u.setChannel(c);
 		em.getTransaction().commit();
 		
 		// check in the DB using JDBC
