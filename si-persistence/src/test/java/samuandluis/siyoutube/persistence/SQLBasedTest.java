@@ -26,7 +26,6 @@ public class SQLBasedTest {
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-		
 	}
 	
 	protected int getLastInsertedId(Statement statement) throws SQLException {

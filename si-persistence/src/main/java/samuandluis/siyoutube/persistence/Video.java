@@ -1,9 +1,13 @@
 package samuandluis.siyoutube.persistence;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -17,7 +21,7 @@ public class Video {
 	
 	@ManyToOne
 	private Channel channel;
-	
+		
 	//Dani no tiene este atributo y lo maneja todo desde lo que sería nuestro Playlist y VideoPlaylist
 	//@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	//private List<VideoPlaylist> videoPlaylist;
