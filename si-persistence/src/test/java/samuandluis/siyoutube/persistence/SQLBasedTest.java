@@ -40,7 +40,7 @@ public class SQLBasedTest {
 
 		@BeforeClass
 		public static void setUpEntityManagerFactory() {
-			emf = Persistence.createEntityManagerFactory("youtube-database");
+			emf = Persistence.createEntityManagerFactory("youtube");
 		}
 
 		@AfterClass

@@ -21,7 +21,7 @@ public class Users {
 	}
 
 	public void deleteUser(User u) {
-		em.remove(u); //with this instruction, the channel is removed too
+		this.em.remove(u); //Videos, comments and channel are deleted too as specified in user declaration
 	}
 
 	public List<User> findAll() {

@@ -26,6 +26,10 @@ public class Video {
 	//@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	//private List<VideoPlaylist> videoPlaylist;
 
+	@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
+	private List<Comment> comments;
+
+	
 	public int getId() {
 		return id;
 	}

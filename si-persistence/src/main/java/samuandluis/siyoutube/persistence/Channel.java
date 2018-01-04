@@ -20,10 +20,11 @@ public class Channel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne 
 	private User user;
 	
-	@OneToMany(mappedBy="channel")
+	//Con esto, si se eliminar un canal se eliminan sus videos
+	@OneToMany(mappedBy="channel", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private List<Video> listVideos;
 	
 	private String description;

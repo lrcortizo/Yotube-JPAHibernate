@@ -12,20 +12,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class VideoTest extends SQLBasedTest{
-	
-	private static EntityManagerFactory emf;
-	
-	@BeforeClass
-	public static void setUpEntityManagerFactory() {
-		emf = Persistence.createEntityManagerFactory("youtube");
-	}
 	
 	@Test
 	public void testAddNewVideo() throws Exception {

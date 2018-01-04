@@ -5,24 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PlaylistTest extends SQLBasedTest {
 
-private static EntityManagerFactory emf;
-	
-	@BeforeClass
-	public static void setUpEntityManagerFactory() {
-		emf = Persistence.createEntityManagerFactory("youtube");
-	}
-	
 	@Test
 	public void testAddNewPlaylist() throws Exception {
 		
