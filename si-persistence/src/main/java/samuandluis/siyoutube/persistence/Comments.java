@@ -26,4 +26,8 @@ private EntityManager em;
 	public List<Comment> findAll() {
 		return em.createQuery("SELECT c FROM Comment c").getResultList();
 	}
+	
+	public List<Comment> findAll(String videoId) {
+		return em.createQuery("SELECT c FROM Comment c where c.video_id = "+ videoId).getResultList();
+	}
 }
