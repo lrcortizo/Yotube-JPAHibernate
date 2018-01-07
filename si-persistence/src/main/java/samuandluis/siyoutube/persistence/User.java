@@ -29,6 +29,9 @@ public class User {
 	@OneToMany(mappedBy="user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private List<Comment> comments;
 	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
+	private List<Like> likes;
+	
 	public int getId() {
 		return id;
 	}

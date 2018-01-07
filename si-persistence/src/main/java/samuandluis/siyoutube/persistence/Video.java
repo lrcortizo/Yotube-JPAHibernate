@@ -28,6 +28,9 @@ public class Video {
 
 	@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private List<Comment> comments;
+	
+	@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
+	private List<Like> likes;
 
 	
 	public int getId() {

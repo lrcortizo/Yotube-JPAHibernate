@@ -5,7 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 public class Comments {
-private EntityManager em;
+	
+	private EntityManager em;
 	
 	public Comments (EntityManager em) {
 		this.em = em;
