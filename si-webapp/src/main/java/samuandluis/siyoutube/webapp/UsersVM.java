@@ -43,7 +43,7 @@ public class UsersVM {
 	
 	@Command
 	@NotifyChange("currentUser")
-	public void newEmployee() {
+	public void newUser() {
 		this.isEditing = false;
 		this.currentUser = new User();
 	}

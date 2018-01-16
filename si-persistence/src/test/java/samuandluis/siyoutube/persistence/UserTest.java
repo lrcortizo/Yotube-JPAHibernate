@@ -21,7 +21,7 @@ public class UserTest extends SQLBasedTest {
 		
 		User u = new User();
 		u.setName("User1");
-
+		
 		EntityManager em = emf.createEntityManager();
 		Users users = new Users(em);
 		em.getTransaction().begin();
@@ -78,12 +78,12 @@ public class UserTest extends SQLBasedTest {
 	public void testDeleteUser() throws SQLException {
 		// insert a user previously with JDBC
 		Statement statement = jdbcConnection.createStatement();
-		statement.executeUpdate("INSERT INTO User(name) values('User1')", Statement.RETURN_GENERATED_KEYS);
+		statement.executeUpdate("INSERT INTO User(name) values('User1111')", Statement.RETURN_GENERATED_KEYS);
 
 		int userId = getLastInsertedId(statement);
 		//Se inserta un canal para comprobar que es borrado al borrar un usuario
-		statement.executeUpdate("INSERT INTO Channel(description) values('Channel1')", Statement.RETURN_GENERATED_KEYS);
-
+		statement.executeUpdate("INSERT INTO Channel(description, user_id) values('Channel1', '"+userId+"')", Statement.RETURN_GENERATED_KEYS);
+		
 		EntityManager em = emf.createEntityManager();
 		Users users = new Users(em);
 		User u = users.findById(userId);

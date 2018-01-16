@@ -19,7 +19,7 @@ public class Like {
 	@ManyToOne
 	private User user;
 	
-	private Boolean like; //true = like, false = dislike
+	private boolean like; //true = like, false = dislike
 	
 	public int getId() {
 		return id;
@@ -40,11 +40,11 @@ public class Like {
 		this.user = user;
 	}
 	
-	public Boolean getLike() {
+	public boolean getLike() {
 		return this.like;
 	}
 
-	public void setLike(Boolean like) {
+	public void setLike(boolean like) {
 		this.like = like;
 	}
 

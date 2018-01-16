@@ -23,7 +23,7 @@ public class User {
 	private String password;
 	private Date birthday;
 	
-	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne (mappedBy="user",cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private Channel channel;
 	
 	@OneToMany(mappedBy="user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
