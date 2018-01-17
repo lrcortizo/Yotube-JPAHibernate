@@ -27,8 +27,8 @@
 					<listcell><label value="@bind(each.name)"></label></listcell>
 					
 					<listcell>
-						<button label="edit" onClick="@command('edit', e=each)"></button>
-						<button label="delete" onClick="@command('delete', e=each)"></button>
+						<button label="edit" onClick="@command('edit', u=each)"></button>
+						<button label="delete" onClick="@command('delete', u=each)"></button>
 					
 					
 					</listcell>

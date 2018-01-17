@@ -29,7 +29,7 @@ private EntityManager em;
 	}
 	
 	public List<Like> findAll(int videoId) {
-		return em.createQuery("SELECT l FROM Like l where l.video_id = "+videoId).getResultList();
+		return em.createQuery("SELECT l FROM Like l where l.video.id = "+videoId).getResultList();
 	}
 	
 }

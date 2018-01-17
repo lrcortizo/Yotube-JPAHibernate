@@ -123,7 +123,7 @@ public class LikeTest extends SQLBasedTest {
 		assertTrue(namesToTest.isEmpty());
 	}
 	
-	//@Test
+	@Test
 	public void testFindAllLikesOfOneVideo() throws SQLException {
 		
 		// insert 1 video previously with JDBC

@@ -24,7 +24,7 @@ public class User {
 	private Date birthday;
 	
 	@OneToOne (mappedBy="user",cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
-	private Channel channel;
+	private Channel channel = new Channel();
 	
 	@OneToMany(mappedBy="user", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private List<Comment> comments;

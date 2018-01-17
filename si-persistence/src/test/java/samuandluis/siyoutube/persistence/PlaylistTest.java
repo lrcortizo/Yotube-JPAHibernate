@@ -98,7 +98,7 @@ public class PlaylistTest extends SQLBasedTest {
 		assertEquals(0, res.getInt("total"));
 	}
 	
-	//@Test
+	@Test
 	public void testCreateVideoPlaylist() throws SQLException {
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();
@@ -128,7 +128,7 @@ public class PlaylistTest extends SQLBasedTest {
 		assertEquals(1, res.getInt("total"));
 	}
 	
-	//@Test
+	@Test
 	public void testDeletePlaylist() throws SQLException {
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();
@@ -159,7 +159,7 @@ public class PlaylistTest extends SQLBasedTest {
 		assertEquals(0, res.getInt("total"));
 	}
 	
-	//@Test
+	@Test
 	public void testGetVideos() throws SQLException {
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();

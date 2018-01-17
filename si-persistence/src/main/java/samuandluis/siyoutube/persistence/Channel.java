@@ -37,6 +37,7 @@ public class Channel {
 		return id;
 	}
 	
+	
 	public List<Video> getListVideos() {
 		return Collections.unmodifiableList(listVideos);
 	}

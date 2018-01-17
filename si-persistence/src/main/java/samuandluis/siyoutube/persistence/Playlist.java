@@ -74,14 +74,16 @@ public class Playlist {
 		VideoPlaylist vp = new VideoPlaylist();
 		vp.setPlaylist(this);
 		vp.setVideo(v);
+		this.videoPlaylists.add(vp);
 		// the VideoPlaylist is automatically persisted due to CascadeType.PERSIST
 	}
 	
 	public void removeVideo(Video v) {
-		for (VideoPlaylist vp: this.videoPlaylists) {
+		List<VideoPlaylist> copy = new ArrayList<>(this.videoPlaylists);
+		for (VideoPlaylist vp: copy) {
 			if (vp.getVideo().equals(v)) {
 				// this will call internalRemoveVideoPlaylist
-				vp.setPlaylist(null);
+				this.videoPlaylists.remove(vp);
 
 				// the video playlist will be also removed from the DB due to "orphanRemoval"
 			}
