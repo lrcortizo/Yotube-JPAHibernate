@@ -28,8 +28,8 @@ private EntityManager em;
 		return em.createQuery("SELECT l FROM Like l").getResultList();
 	}
 	
-	public List<Like> findAll(String videoId) {
-		return em.createQuery("SELECT l FROM Like l where l.video_id = "+ videoId).getResultList();
+	public List<Like> findAll(int videoId) {
+		return em.createQuery("SELECT l FROM Like l where l.video_id = "+videoId).getResultList();
 	}
 	
 }

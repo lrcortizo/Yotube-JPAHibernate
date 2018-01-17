@@ -28,7 +28,7 @@ public class Comments {
 		return em.createQuery("SELECT c FROM Comment c").getResultList();
 	}
 	
-	public List<Comment> findAll(String videoId) {
+	public List<Comment> findAll(int videoId) {
 		return em.createQuery("SELECT c FROM Comment c where c.video_id = "+ videoId).getResultList();
 	}
 }

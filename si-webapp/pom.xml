@@ -3,10 +3,11 @@
 	<artifactId>si-webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<groupId>SamuAndLuis</groupId>
+	<packaging>war</packaging>
 
 	<properties>
 		<si-persistence.version>0.0.1-SNAPSHOT</si-persistence.version>
-		<zk.version>8.0.0</zk.version>
+		<zk.version>8.5.0</zk.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>

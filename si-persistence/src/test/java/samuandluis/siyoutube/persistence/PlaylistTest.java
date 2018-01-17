@@ -82,11 +82,10 @@ public class PlaylistTest extends SQLBasedTest {
 				.RETURN_GENERATED_KEYS);
 
 		EntityManager em = emf.createEntityManager();
-
+		Playlist p = new Playlists(em).findById(playlistId);
+		Video v = new Videos(em).findById(videoId);
+		
 		em.getTransaction().begin();
-			Playlist p = new Playlists(em).findById(playlistId);
-			Video v = new Videos(em).findById(videoId);
-
 			p.removeVideo(v);
 		em.getTransaction().commit();
 
@@ -99,7 +98,7 @@ public class PlaylistTest extends SQLBasedTest {
 		assertEquals(0, res.getInt("total"));
 	}
 	
-	@Test
+	//@Test
 	public void testCreateVideoPlaylist() throws SQLException {
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();
@@ -129,7 +128,7 @@ public class PlaylistTest extends SQLBasedTest {
 		assertEquals(1, res.getInt("total"));
 	}
 	
-	@Test
+	//@Test
 	public void testDeletePlaylist() throws SQLException {
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();
@@ -160,7 +159,7 @@ public class PlaylistTest extends SQLBasedTest {
 		assertEquals(0, res.getInt("total"));
 	}
 	
-	@Test
+	//@Test
 	public void testGetVideos() throws SQLException {
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();

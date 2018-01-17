@@ -1,12 +1,15 @@
 package samuandluis.siyoutube.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="UserLikesVideo")
 public class Like {
 	
 	@Id
@@ -19,6 +22,7 @@ public class Like {
 	@ManyToOne
 	private User user;
 	
+	@Column(name = "likes")
 	private boolean like; //true = like, false = dislike
 	
 	public int getId() {
