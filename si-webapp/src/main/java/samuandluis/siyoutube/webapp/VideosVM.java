@@ -10,12 +10,15 @@ import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 
 import samuandluis.siyoutube.webapp.DesktopEntityManagerManager;
+import samuandluis.siyoutube.persistence.Channels;
+import samuandluis.siyoutube.persistence.Channel;
 import samuandluis.siyoutube.persistence.Video;
 import samuandluis.siyoutube.persistence.Videos;
 public class VideosVM {
 	
 	private EntityManager em;
 	private Videos videos;
+	private Channels channels;
 	
 	private boolean isEditing = false;
 	
@@ -26,10 +29,15 @@ public class VideosVM {
 	public void init() {
 		this.em = DesktopEntityManagerManager.getDesktopEntityManager();
 		this.videos = new Videos(em);
+		this.channels = new Channels(em);
 	}
 	
 	public List<Video> getVideos() {
 		return this.videos.findAll();
+	}
+	
+	public List<Channel> getChannels() {
+		return this.channels.findAll();
 	}
 	
 	public Video getCurrentVideo() {

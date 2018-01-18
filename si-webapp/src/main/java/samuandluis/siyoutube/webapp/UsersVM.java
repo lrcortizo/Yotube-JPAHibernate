@@ -12,6 +12,9 @@ import org.zkoss.bind.annotation.NotifyChange;
 import samuandluis.siyoutube.webapp.DesktopEntityManagerManager;
 import samuandluis.siyoutube.persistence.User;
 import samuandluis.siyoutube.persistence.Users;
+import samuandluis.siyoutube.persistence.Video;
+import samuandluis.siyoutube.persistence.Channel;
+import samuandluis.siyoutube.persistence.Channels;
 
 public class UsersVM {
 	

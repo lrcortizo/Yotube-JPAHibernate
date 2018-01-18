@@ -1,6 +1,8 @@
 package samuandluis.siyoutube.persistence;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,7 +23,7 @@ public class User {
 	private String name;
 	private String nickname;
 	private String password;
-	private Date birthday;
+	private Date birthday = new Date(0);
 	
 	@OneToOne (mappedBy="user",cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private Channel channel = new Channel();
@@ -53,7 +55,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getBirthday() {
+	public Date getBirthday(){
 		return birthday;
 	}
 	public void setBirthday(Date birthday) {

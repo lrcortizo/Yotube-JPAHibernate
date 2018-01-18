@@ -5,6 +5,24 @@
 		
 		<window title="Comment Editor" mode="modal" visible="@load(vm.currentComment ne null)">
 			Text: <textbox value="@load(vm.currentComment.text) @save(vm.currentComment.text, before='saveComment')"></textbox>
+			Video:
+				<listbox model="@load(vm.videos)" multiple="false" checkmark="true" selectedItems="@load(vm.currentComment.video) @save(vm.currentComment.video, before='saveComment')">
+					<listhead>
+						<listheader label="name"></listheader>
+					</listhead>
+					<template name="model">
+						<listitem><listcell><label value="@load(each.name)"></label></listcell></listitem>
+					</template>
+				</listbox>
+			User:
+				<listbox model="@load(vm.users)" multiple="false" checkmark="true" selectedItems="@load(vm.currentComment.user) @save(vm.currentComment.user, before='saveComment')">
+					<listhead>
+						<listheader label="name"></listheader>
+					</listhead>
+					<template name="model">
+						<listitem><listcell><label value="@load(each.name)"></label></listcell></listitem>
+					</template>
+				</listbox>
 			<hbox>
 				<button label="accept" onClick="@command('saveComment')"></button>
 				<button label="cancel" onClick="@command('resetEditing')"></button>
@@ -17,12 +35,16 @@
 			<listbox model="@bind(vm.comments)">
 				<listhead>
 					<listheader label="text"></listheader>
+					<listheader label="video"></listheader>
+					<listheader label="user"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>	
 				<template name="model">
 					<listitem>
 						<listcell>
 							<label value="@bind(each.text)"></label>
+							<label value="@bind(each.video.name)"></label>
+							<label value="@bind(each.user.name)"></label>
 						</listcell>		
 						<listcell>
 							<button label="edit" onClick="@command('edit', c=each)"></button>

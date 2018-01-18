@@ -12,11 +12,19 @@ import org.zkoss.bind.annotation.NotifyChange;
 import samuandluis.siyoutube.webapp.DesktopEntityManagerManager;
 import samuandluis.siyoutube.persistence.Comment;
 import samuandluis.siyoutube.persistence.Comments;
+import samuandluis.siyoutube.persistence.Video;
+import samuandluis.siyoutube.persistence.Videos;
+import samuandluis.siyoutube.persistence.User;
+import samuandluis.siyoutube.persistence.Users;
 
 public class CommentsVM {
 	
 	private EntityManager em;
 	private Comments comments;
+	private Videos videos;
+	private Users users;
+	private Video video;
+	private User user;
 	
 	private boolean isEditing = false;
 	
@@ -27,10 +35,22 @@ public class CommentsVM {
 	public void init() {
 		this.em = DesktopEntityManagerManager.getDesktopEntityManager();
 		this.comments = new Comments(em);
+		this.videos = new Videos(em);
+		this.users = new Users(em);
+		this.video = new Video();
+		this.user = new User();
 	}
 	
 	public List<Comment> getComments() {
 		return this.comments.findAll();
+	}
+	
+	public List<Video> getVideos() {
+		return this.videos.findAll();
+	}
+	
+	public List<User> getUsers() {
+		return this.users.findAll();
 	}
 	
 	public Comment getCurrentComment() {

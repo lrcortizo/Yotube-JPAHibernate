@@ -5,6 +5,16 @@
 		
 		<window title="Video Editor" mode="modal" visible="@load(vm.currentVideo ne null)">
 			Name: <textbox value="@load(vm.currentVideo.name) @save(vm.currentVideo.name, before='saveVideo')"></textbox>
+			Category: <textbox value="@load(vm.currentVideo.category) @save(vm.currentVideo.category, before='saveVideo')"></textbox>
+			Channel:
+				<listbox model="@load(vm.channels)" multiple="false" checkmark="true" selectedItems="@load(vm.currentVideo.channel) @save(vm.currentVideo.channel, before='saveVideos')">
+					<listhead>
+						<listheader label="name"></listheader>
+					</listhead>
+					<template name="model">
+						<listitem><listcell><label value="@load(each)"></label></listcell></listitem>
+					</template>
+				</listbox>
 			<hbox>
 				<button label="accept" onClick="@command('saveVideo')"></button>
 				<button label="cancel" onClick="@command('resetEditing')"></button>

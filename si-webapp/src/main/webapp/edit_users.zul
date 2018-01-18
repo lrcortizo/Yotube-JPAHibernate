@@ -5,6 +5,10 @@
 	
 	<window title="User Editor" mode="modal" visible="@load(vm.currentUser ne null)">
 		Name: <textbox value="@load(vm.currentUser.name) @save(vm.currentUser.name, before='saveUser')"></textbox>
+		Nickname: <textbox value="@load(vm.currentUser.nickname) @save(vm.currentUser.nickname, before='saveUser')"></textbox>
+		Password: <textbox value="@load(vm.currentUser.password) @save(vm.currentUser.password, before='saveUser')"></textbox>
+		Birthdate: <datebox format="short" value="@load(vm.currentUser.birthday) @save(vm.currentUser.birthday, before='saveUser')"></datebox>
+		Channel description: <textbox value="@load(vm.currentUser.channel.description) @save(vm.currentUser.channel.description, before='saveUser')"></textbox>
 		<hbox>
 			<button label="accept" onClick="@command('saveUser')"></button>
 			<button label="cancel" onClick="@command('resetEditing')"></button>
@@ -18,13 +22,20 @@
 			<listbox model="@bind(vm.users)">
 				<listhead>
 					<listheader label="name"></listheader>
+					<listheader label="nickname"></listheader>
+					<listheader label="password"></listheader>
+					<listheader label="birthday"></listheader>
+					<listheader label="channel description"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				
 				<template name="model">
 					<listitem>
 						<listcell><label value="@bind(each.name)"></label></listcell>
-						
+						<listcell><label value="@bind(each.nickname)"></label></listcell>
+						<listcell><label value="@bind(each.password)"></label></listcell>
+						<listcell><label value="@bind(each.birthday)"></label></listcell>
+						<listcell><label value="@bind(each.channel.description)"></label></listcell>
 						<listcell>
 							<button label="edit" onClick="@command('edit', u=each)"></button>
 							<button label="delete" onClick="@command('delete', u=each)"></button>
