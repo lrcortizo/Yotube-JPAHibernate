@@ -1,0 +1,36 @@
+<zk>
+	<window title="Videos" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.VideosVM')">
+		
+		<window title="Video Editor" mode="modal" visible="@load(vm.currentVideo ne null)">
+			Name: <textbox value="@load(vm.currentVideo.name) @save(vm.currentVideo.name, before='saveVideo')"></textbox>
+			<hbox>
+				<button label="accept" onClick="@command('saveVideo')"></button>
+				<button label="cancel" onClick="@command('resetEditing')"></button>
+			</hbox>
+		</window>
+		<groupbox mold="3d" closable="false">
+			<caption label="Videos list">
+				<button label="new" onClick="@command('newVideo')"></button>
+			</caption>
+			<listbox model="@bind(vm.videos)">
+				<listhead>
+					<listheader label="name"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>	
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@bind(each.name)"></label>
+						</listcell>		
+						<listcell>
+							<button label="edit" onClick="@command('edit', v=each)"></button>
+							<button label="delete" onClick="@command('delete', v=each)"></button>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

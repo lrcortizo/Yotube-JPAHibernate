@@ -1,0 +1,36 @@
+<zk>
+	<window title="Comments" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.CommentsVM')">
+		
+		<window title="Comment Editor" mode="modal" visible="@load(vm.currentComment ne null)">
+			Text: <textbox value="@load(vm.currentComment.text) @save(vm.currentComment.text, before='saveComment')"></textbox>
+			<hbox>
+				<button label="accept" onClick="@command('saveComment')"></button>
+				<button label="cancel" onClick="@command('resetEditing')"></button>
+			</hbox>
+		</window>
+		<groupbox mold="3d" closable="false">
+			<caption label="Comments list">
+				<button label="new" onClick="@command('newComment')"></button>
+			</caption>
+			<listbox model="@bind(vm.comments)">
+				<listhead>
+					<listheader label="text"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>	
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@bind(each.text)"></label>
+						</listcell>		
+						<listcell>
+							<button label="edit" onClick="@command('edit', c=each)"></button>
+							<button label="delete" onClick="@command('delete', c=each)"></button>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

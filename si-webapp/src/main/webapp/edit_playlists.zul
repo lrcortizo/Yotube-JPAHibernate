@@ -1,0 +1,53 @@
+<zk>
+	<window title="Playlists" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.PlaylistsVM')"
+	>
+	
+	<window title="Playlist" mode="modal" visible="@load(vm.currentPlaylist ne null)">
+		Name: <textbox value="@load(vm.currentPlaylist.name) @save(vm.currentPlaylist.name, before='savePlaylist')"></textbox>
+		Videos:
+		<listbox model="@load(vm.videos)" multiple="true" checkmark="true" selectedItems="@load(vm.currentPlaylist.videos) @save(vm.currentPlaylist.videos, before='savePlaylist')">
+			<listhead>
+				<listheader label="name"></listheader>
+			</listhead>
+			<template name="model">
+				<listitem><listcell><label value="@load(each.name)"></label></listcell></listitem>
+			</template>
+		</listbox>
+		<hbox>
+			<button label="accept" onClick="@command('savePlaylist')"></button>
+			<button label="cancel" onClick="@command('resetEditing')"></button>
+		</hbox>
+	
+	</window>
+	<groupbox mold="3d" closable="false">
+		<caption label="Playlists list">
+			<button label="new" onClick="@command('newPlaylist')"></button>
+		</caption>
+		<listbox model="@bind(vm.playlists)">
+			<listhead>
+				<listheader label="name"></listheader>
+				<listheader label="Num. videos"></listheader>
+				<listheader label="actions"></listheader>
+			</listhead>
+			
+			<template name="model">
+				<listitem>
+					<listcell><label value="@bind(each.name)"></label></listcell>
+					<listcell><label value="@load(vm.getPlaylistVideos(each))"></label></listcell>
+					
+					<listcell>
+						<button label="edit" onClick="@command('edit', p=each)"></button>
+						<button label="delete" onClick="@command('delete', p=each)"></button>
+					
+					
+					</listcell>
+				</listitem>
+			</template>
+		
+		</listbox>
+	</groupbox>
+	</window>
+</zk>
+	

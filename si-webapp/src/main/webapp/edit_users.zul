@@ -1,8 +1,7 @@
 <zk>
 	<window title="Users" border="normal"
 		apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.UsersVM')"
-	>
+		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.UsersVM')">
 	
 	<window title="User Editor" mode="modal" visible="@load(vm.currentUser ne null)">
 		Name: <textbox value="@load(vm.currentUser.name) @save(vm.currentUser.name, before='saveUser')"></textbox>
@@ -12,31 +11,31 @@
 		</hbox>
 	
 	</window>
-	<groupbox mold="3d" closable="false">
-		<caption label="Users list">
-			<button label="new" onClick="@command('newUser')"></button>
-		</caption>
-		<listbox model="@bind(vm.users)">
-			<listhead>
-				<listheader label="name"></listheader>
-				<listheader label="actions"></listheader>
-			</listhead>
+		<groupbox mold="3d" closable="false">
+			<caption label="Users list">
+				<button label="new" onClick="@command('newUser')"></button>
+			</caption>
+			<listbox model="@bind(vm.users)">
+				<listhead>
+					<listheader label="name"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>
+				
+				<template name="model">
+					<listitem>
+						<listcell><label value="@bind(each.name)"></label></listcell>
+						
+						<listcell>
+							<button label="edit" onClick="@command('edit', u=each)"></button>
+							<button label="delete" onClick="@command('delete', u=each)"></button>
+						
+						
+						</listcell>
+					</listitem>
+				</template>
 			
-			<template name="model">
-				<listitem>
-					<listcell><label value="@bind(each.name)"></label></listcell>
-					
-					<listcell>
-						<button label="edit" onClick="@command('edit', u=each)"></button>
-						<button label="delete" onClick="@command('delete', u=each)"></button>
-					
-					
-					</listcell>
-				</listitem>
-			</template>
-		
-		</listbox>
-	</groupbox>
+			</listbox>
+		</groupbox>
 	</window>
 </zk>
 	

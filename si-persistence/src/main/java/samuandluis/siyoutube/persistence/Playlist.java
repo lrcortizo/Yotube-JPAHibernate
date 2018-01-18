@@ -19,7 +19,7 @@ public class Playlist {
 	private int id;
 	
 	@OneToMany(mappedBy="playlist", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
-	private List<VideoPlaylist> videoPlaylists;
+	private List<VideoPlaylist> videoPlaylists = new ArrayList<VideoPlaylist>();
 
 	private String name;
 	

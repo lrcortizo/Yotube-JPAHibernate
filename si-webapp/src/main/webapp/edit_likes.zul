@@ -1,0 +1,36 @@
+<zk>
+	<window title="Likes" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.LikesVM')">
+		
+		<window title="Like Editor" mode="modal" visible="@load(vm.currentLike ne null)">
+			Text: <textbox value="@load(vm.currentLike.like) @save(vm.currentLike.like, before='saveLike')"></textbox>
+			<hbox>
+				<button label="accept" onClick="@command('saveLike')"></button>
+				<button label="cancel" onClick="@command('resetEditing')"></button>
+			</hbox>
+		</window>
+		<groupbox mold="3d" closable="false">
+			<caption label="Likes list">
+				<button label="new" onClick="@command('newLike')"></button>
+			</caption>
+			<listbox model="@bind(vm.likes)">
+				<listhead>
+					<listheader label="like"></listheader>
+					<listheader label="actions"></listheader>
+				</listhead>	
+				<template name="model">
+					<listitem>
+						<listcell>
+							<label value="@bind(each.like)"></label>
+						</listcell>		
+						<listcell>
+							<button label="edit" onClick="@command('edit', l=each)"></button>
+							<button label="delete" onClick="@command('delete', l=each)"></button>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+	</window>
+</zk>
