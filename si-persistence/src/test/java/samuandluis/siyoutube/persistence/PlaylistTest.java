@@ -35,7 +35,7 @@ public class PlaylistTest extends SQLBasedTest {
 	}
 	
 	@Test
-	public void testAddEmployeeToProject() throws SQLException {
+	public void testAddVideoToPlaylist() throws SQLException {
 
 		// insert a playlist previously with JDBC
 		int playlistId = insertAPlaylist();
@@ -116,7 +116,9 @@ public class PlaylistTest extends SQLBasedTest {
 			VideoPlaylist vp = new VideoPlaylist();
 			vp.setPlaylist(p); // vp is automatically added to the Playlist.videoPlaylists collection
 			vp.setVideo(v);
-			// the ProjectAssignment is automatically persisted due to CascadeType.PERSIST present in Project.projectAssignments
+			p.internalAddVideoPlaylist(vp);
+			Playlists ps = new Playlists(em);
+			ps.addNewPlaylist(p);
 
 		em.getTransaction().commit();
 
