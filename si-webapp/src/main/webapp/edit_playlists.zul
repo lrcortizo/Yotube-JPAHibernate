@@ -1,11 +1,19 @@
 <zk>
+	<listbox>
+		<listhead>
+			<listheader><a style="color:white" href="edit_users.zul" label="Users"/></listheader>
+			<listheader><a style="color:white" href="edit_comments.zul" label="Comments"/></listheader>
+			<listheader><a style="color:white" href="edit_videos.zul" label="Videos"/></listheader>
+			<listheader><a style="color:white" href="edit_likes.zul" label="Likes"/></listheader>
+			<listheader><a style="color:white" href="edit_playlists.zul" label="Playlists"/></listheader>
+		</listhead>
+	</listbox>
 	<window title="Playlists" border="normal"
 		apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.PlaylistsVM')"
-	>
+		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.PlaylistsVM')">
 	
 	<window title="Playlist" mode="modal" visible="@load(vm.currentPlaylist ne null)">
-		Name: <textbox value="@load(vm.currentPlaylist.name) @save(vm.currentPlaylist.name, before='savePlaylist')"></textbox>
+		Name: <textbox value="@load(vm.currentPlaylist.name) @save(vm.currentPlaylist.name, before='savePlaylist')"></textbox><separator/>
 		Videos:
 		<listbox model="@load(vm.videos)" multiple="true" checkmark="true" selectedItems="@load(vm.currentPlaylist.videos) @save(vm.currentPlaylist.videos, before='savePlaylist')">
 			<listhead>
@@ -15,6 +23,7 @@
 				<listitem><listcell><label value="@load(each.name)"></label></listcell></listitem>
 			</template>
 		</listbox>
+		<separator/>
 		<hbox>
 			<button label="accept" onClick="@command('savePlaylist')"></button>
 			<button label="cancel" onClick="@command('resetEditing')"></button>

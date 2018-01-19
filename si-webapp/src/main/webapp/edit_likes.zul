@@ -1,10 +1,19 @@
 <zk>
+	<listbox>
+		<listhead>
+			<listheader><a style="color:white" href="edit_users.zul" label="Users"/></listheader>
+			<listheader><a style="color:white" href="edit_comments.zul" label="Comments"/></listheader>
+			<listheader><a style="color:white" href="edit_videos.zul" label="Videos"/></listheader>
+			<listheader><a style="color:white" href="edit_likes.zul" label="Likes"/></listheader>
+			<listheader><a style="color:white" href="edit_playlists.zul" label="Playlists"/></listheader>
+		</listhead>
+	</listbox>
 	<window title="Likes" border="normal"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.LikesVM')">
 		
 		<window title="Like Editor" mode="modal" visible="@load(vm.currentLike ne null)">
-			Text: <textbox value="@load(vm.currentLike.like) @save(vm.currentLike.like, before='saveLike')"></textbox>
+			<textbox value="@load(vm.currentLike.like) @save(vm.currentLike.like, before='saveLike')"></textbox><separator/>
 			<hbox>
 				<button label="accept" onClick="@command('saveLike')"></button>
 				<button label="cancel" onClick="@command('resetEditing')"></button>

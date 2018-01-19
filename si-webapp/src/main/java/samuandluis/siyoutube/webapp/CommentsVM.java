@@ -37,8 +37,6 @@ public class CommentsVM {
 		this.comments = new Comments(em);
 		this.videos = new Videos(em);
 		this.users = new Users(em);
-		this.video = new Video();
-		this.user = new User();
 	}
 	
 	public List<Comment> getComments() {

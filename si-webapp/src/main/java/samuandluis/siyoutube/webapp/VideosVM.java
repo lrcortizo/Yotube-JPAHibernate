@@ -10,15 +10,18 @@ import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 
 import samuandluis.siyoutube.webapp.DesktopEntityManagerManager;
-import samuandluis.siyoutube.persistence.Channels;
-import samuandluis.siyoutube.persistence.Channel;
+import samuandluis.siyoutube.persistence.Comments;
+import samuandluis.siyoutube.persistence.Likes;
+import samuandluis.siyoutube.persistence.Like;
+import samuandluis.siyoutube.persistence.Comment;
 import samuandluis.siyoutube.persistence.Video;
 import samuandluis.siyoutube.persistence.Videos;
 public class VideosVM {
 	
 	private EntityManager em;
 	private Videos videos;
-	private Channels channels;
+	private Comments comments;
+	private Likes likes;
 	
 	private boolean isEditing = false;
 	
@@ -29,15 +32,20 @@ public class VideosVM {
 	public void init() {
 		this.em = DesktopEntityManagerManager.getDesktopEntityManager();
 		this.videos = new Videos(em);
-		this.channels = new Channels(em);
+		this.comments = new Comments(em);
+		this.likes = new Likes(em);
 	}
 	
 	public List<Video> getVideos() {
 		return this.videos.findAll();
 	}
 	
-	public List<Channel> getChannels() {
-		return this.channels.findAll();
+	public List<Comment> getComments() {
+		return this.comments.findAll();
+	}
+	
+	public List<Like> getLikes() {
+		return this.likes.findAll();
 	}
 	
 	public Video getCurrentVideo() {
@@ -46,6 +54,14 @@ public class VideosVM {
 	
 	public void setCurrentVideo(Video currentVideo) {
 		this.currentVideo = currentVideo;
+	}
+	
+	public int getNumComments(@BindingParam("v") Video v) {
+		return v.getComments().size();
+	}
+	
+	public int getNumRatings(@BindingParam("v") Video v) {
+		return v.getLikes().size();
 	}
 	
 	@Command

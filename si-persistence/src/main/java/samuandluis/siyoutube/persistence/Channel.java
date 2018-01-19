@@ -20,12 +20,12 @@ public class Channel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne 
+	@OneToOne
 	private User user;
 	
 	//Con esto, si se eliminar un canal se eliminan sus videos
 	@OneToMany(mappedBy="channel", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
-	private List<Video> listVideos;
+	private List<Video> listVideos = new ArrayList<Video>();
 	
 	private String description;
 	
@@ -37,10 +37,13 @@ public class Channel {
 		return id;
 	}
 	
-	
 	public List<Video> getListVideos() {
-		return Collections.unmodifiableList(listVideos);
+		return listVideos;
 	}
+	
+	public void setListVideos(List<Video> listVideos) {
+		this.listVideos = listVideos;
+	}	
 	
 	public String getDescription() {
 		return description;

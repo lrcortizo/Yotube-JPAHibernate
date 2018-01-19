@@ -1,14 +1,23 @@
 <zk>
+	<listbox>
+		<listhead>
+			<listheader><a style="color:white" href="edit_users.zul" label="Users"/></listheader>
+			<listheader><a style="color:white" href="edit_comments.zul" label="Comments"/></listheader>
+			<listheader><a style="color:white" href="edit_videos.zul" label="Videos"/></listheader>
+			<listheader><a style="color:white" href="edit_likes.zul" label="Likes"/></listheader>
+			<listheader><a style="color:white" href="edit_playlists.zul" label="Playlists"/></listheader>
+		</listhead>
+	</listbox>
 	<window title="Users" border="normal"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.UsersVM')">
 	
 	<window title="User Editor" mode="modal" visible="@load(vm.currentUser ne null)">
-		Name: <textbox value="@load(vm.currentUser.name) @save(vm.currentUser.name, before='saveUser')"></textbox>
-		Nickname: <textbox value="@load(vm.currentUser.nickname) @save(vm.currentUser.nickname, before='saveUser')"></textbox>
-		Password: <textbox value="@load(vm.currentUser.password) @save(vm.currentUser.password, before='saveUser')"></textbox>
-		Birthdate: <datebox format="short" value="@load(vm.currentUser.birthday) @save(vm.currentUser.birthday, before='saveUser')"></datebox>
-		Channel description: <textbox value="@load(vm.currentUser.channel.description) @save(vm.currentUser.channel.description, before='saveUser')"></textbox>
+		Name: <separator/><textbox value="@load(vm.currentUser.name) @save(vm.currentUser.name, before='saveUser')"></textbox><separator/>
+		Nickname: <separator/><textbox value="@load(vm.currentUser.nickname) @save(vm.currentUser.nickname, before='saveUser')"></textbox><separator/>
+		Password: <separator/><textbox value="@load(vm.currentUser.password) @save(vm.currentUser.password, before='saveUser')"></textbox><separator/>
+		Birthdate: <separator/><datebox format="short" value="@load(vm.currentUser.birthday) @save(vm.currentUser.birthday, before='saveUser')"></datebox><separator/>
+		Channel description: <separator/><textbox cols="40" rows="5" value="@load(vm.currentUser.channel.description) @save(vm.currentUser.channel.description, before='saveUser')"></textbox><separator/>
 		<hbox>
 			<button label="accept" onClick="@command('saveUser')"></button>
 			<button label="cancel" onClick="@command('resetEditing')"></button>
@@ -25,7 +34,7 @@
 					<listheader label="nickname"></listheader>
 					<listheader label="password"></listheader>
 					<listheader label="birthday"></listheader>
-					<listheader label="channel description"></listheader>
+					<listheader label="channel descript."></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>
 				

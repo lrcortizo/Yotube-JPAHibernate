@@ -1,20 +1,38 @@
 <zk>
+	<listbox>
+		<listhead>
+			<listheader><a style="color:white" href="edit_users.zul" label="Users"/></listheader>
+			<listheader><a style="color:white" href="edit_comments.zul" label="Comments"/></listheader>
+			<listheader><a style="color:white" href="edit_videos.zul" label="Videos"/></listheader>
+			<listheader><a style="color:white" href="edit_likes.zul" label="Likes"/></listheader>
+			<listheader><a style="color:white" href="edit_playlists.zul" label="Playlists"/></listheader>
+		</listhead>
+	</listbox>
 	<window title="Videos" border="normal"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('samuandluis.siyoutube.webapp.VideosVM')">
 		
 		<window title="Video Editor" mode="modal" visible="@load(vm.currentVideo ne null)">
-			Name: <textbox value="@load(vm.currentVideo.name) @save(vm.currentVideo.name, before='saveVideo')"></textbox>
-			Category: <textbox value="@load(vm.currentVideo.category) @save(vm.currentVideo.category, before='saveVideo')"></textbox>
-			Channel:
-				<listbox model="@load(vm.channels)" multiple="false" checkmark="true" selectedItems="@load(vm.currentVideo.channel) @save(vm.currentVideo.channel, before='saveVideos')">
-					<listhead>
-						<listheader label="name"></listheader>
-					</listhead>
-					<template name="model">
-						<listitem><listcell><label value="@load(each)"></label></listcell></listitem>
-					</template>
-				</listbox>
+			Name: <separator/><textbox value="@load(vm.currentVideo.name) @save(vm.currentVideo.name, before='saveVideo')"></textbox><separator/>
+			Category: <separator/><textbox value="@load(vm.currentVideo.category) @save(vm.currentVideo.category, before='saveVideo')"></textbox><separator/>
+			Comments:
+			<listbox model="@load(vm.comments)" multiple="true" checkmark="true" selectedItems="@load(vm.currentVideo.comments) @save(vm.currentVideo.comments, before='saveVideo')">
+				<listhead>
+					<listheader label="text"></listheader>
+				</listhead>
+				<template name="model">
+					<listitem><listcell><label value="@load(each.text)"></label></listcell></listitem>
+				</template>
+			</listbox><separator/>
+			Likes:
+			<listbox model="@load(vm.likes)" multiple="true" checkmark="true" selectedItems="@load(vm.currentVideo.likes) @save(vm.currentVideo.likes, before='saveVideo')">
+				<listhead>
+					<listheader label="text"></listheader>
+				</listhead>
+				<template name="model">
+					<listitem><listcell><label value="@load(each.like)"></label></listcell></listitem>
+				</template>
+			</listbox><separator/>
 			<hbox>
 				<button label="accept" onClick="@command('saveVideo')"></button>
 				<button label="cancel" onClick="@command('resetEditing')"></button>
@@ -27,6 +45,9 @@
 			<listbox model="@bind(vm.videos)">
 				<listhead>
 					<listheader label="name"></listheader>
+					<listheader label="category"></listheader>
+					<listheader label="Num. comments"></listheader>
+					<listheader label="Num. ratings"></listheader>
 					<listheader label="actions"></listheader>
 				</listhead>	
 				<template name="model">
@@ -34,6 +55,11 @@
 						<listcell>
 							<label value="@bind(each.name)"></label>
 						</listcell>		
+						<listcell>
+							<label value="@bind(each.category)"></label>
+						</listcell>
+						<listcell><label value="@load(vm.getNumComments(each))"></label></listcell>
+						<listcell><label value="@load(vm.getNumRatings(each))"></label></listcell>
 						<listcell>
 							<button label="edit" onClick="@command('edit', v=each)"></button>
 							<button label="delete" onClick="@command('delete', v=each)"></button>

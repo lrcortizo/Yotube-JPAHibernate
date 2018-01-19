@@ -1,5 +1,6 @@
 package samuandluis.siyoutube.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,16 +22,15 @@ public class Video {
 	
 	@ManyToOne
 	private Channel channel;
-		
-	//Dani no tiene este atributo y lo maneja todo desde lo que sería nuestro Playlist y VideoPlaylist
+	
 	//@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	//private List<VideoPlaylist> videoPlaylist;
 
 	@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
-	private List<Comment> comments;
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	@OneToMany(mappedBy="video", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
-	private List<Like> likes;
+	private List<Like> likes = new ArrayList<Like>();
 
 	
 	public int getId() {
@@ -45,6 +45,42 @@ public class Video {
 		this.videoPlaylist = videoPlaylist;
 	}
 	*/
+	public List <Comment> getComments() {
+		return this.comments;
+	}
+	
+	public List <Like> getLikes() {
+		return this.likes;
+	}
+	
+	public void setComments(List<Comment> comments) {
+		for (Comment c: comments) {
+			if (!this.getComments().contains(c)) {
+				this.addComment(c);
+			}
+		}
+	}
+		
+	public void addComment(Comment c) {
+
+		this.getComments().add(c);
+		c.setVideo(this);
+	}
+	
+	public void setLikes(List<Like> likes) {
+		for (Like l: likes) {
+			if (!this.getLikes().contains(l)) {
+				this.addLike(l);
+			}
+		}
+	}
+		
+	public void addLike(Like l) {
+
+		this.getLikes().add(l);
+		l.setVideo(this);
+	}
+	
 	public Channel getChannel() {
 		return this.channel;
 	}
