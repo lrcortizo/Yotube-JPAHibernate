@@ -1,1 +1,1 @@
-# Youtube project with Maven and JPAHibernate
+# Youtube database with Maven and JPAHibernate
